@@ -18,7 +18,7 @@ This project is an AI-powered Resume Screening System developed using Python. It
 ## Project Structure
 
 ```
-FUTURE_ML_03/
+backend/
 │
 ├── data/
 │   ├── resumes/
