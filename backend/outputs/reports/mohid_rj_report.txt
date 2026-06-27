@@ -1,0 +1,29 @@
+
+Candidate: mohid_rj.docx
+
+Match Score: 27.27%
+
+Matched Skills:
+aws
+git
+sql
+
+Missing Skills:
+deep learning
+docker
+machine learning
+numpy
+pandas
+python
+scikit-learn
+tensorflow
+
+Recommendations:
+Consider learning pandas
+Consider learning scikit-learn
+Consider learning numpy
+Consider learning docker
+Consider learning tensorflow
+Consider learning deep learning
+Consider learning python
+Consider learning machine learning

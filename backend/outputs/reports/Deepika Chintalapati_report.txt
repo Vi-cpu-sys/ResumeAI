@@ -1,0 +1,30 @@
+
+Candidate: Deepika Chintalapati.docx
+
+Match Score: 18.18%
+
+Matched Skills:
+aws
+sql
+
+Missing Skills:
+deep learning
+docker
+git
+machine learning
+numpy
+pandas
+python
+scikit-learn
+tensorflow
+
+Recommendations:
+Consider learning pandas
+Consider learning scikit-learn
+Consider learning numpy
+Consider learning docker
+Consider learning tensorflow
+Consider learning git
+Consider learning deep learning
+Consider learning python
+Consider learning machine learning

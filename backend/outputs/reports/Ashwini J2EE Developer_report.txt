@@ -1,0 +1,29 @@
+
+Candidate: Ashwini J2EE Developer.docx
+
+Match Score: 27.27%
+
+Matched Skills:
+docker
+git
+sql
+
+Missing Skills:
+aws
+deep learning
+machine learning
+numpy
+pandas
+python
+scikit-learn
+tensorflow
+
+Recommendations:
+Consider learning pandas
+Consider learning scikit-learn
+Consider learning numpy
+Consider learning aws
+Consider learning tensorflow
+Consider learning deep learning
+Consider learning python
+Consider learning machine learning

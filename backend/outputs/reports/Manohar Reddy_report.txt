@@ -1,0 +1,26 @@
+
+Candidate: Manohar Reddy.docx
+
+Match Score: 54.55%
+
+Matched Skills:
+aws
+docker
+git
+machine learning
+python
+sql
+
+Missing Skills:
+deep learning
+numpy
+pandas
+scikit-learn
+tensorflow
+
+Recommendations:
+Consider learning pandas
+Consider learning scikit-learn
+Consider learning numpy
+Consider learning tensorflow
+Consider learning deep learning

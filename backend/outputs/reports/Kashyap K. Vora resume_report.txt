@@ -1,0 +1,27 @@
+
+Candidate: Kashyap K. Vora resume.docx
+
+Match Score: 45.45%
+
+Matched Skills:
+aws
+git
+machine learning
+python
+sql
+
+Missing Skills:
+deep learning
+docker
+numpy
+pandas
+scikit-learn
+tensorflow
+
+Recommendations:
+Consider learning pandas
+Consider learning scikit-learn
+Consider learning numpy
+Consider learning tensorflow
+Consider learning deep learning
+Consider learning docker

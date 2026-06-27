@@ -1,0 +1,31 @@
+
+Candidate: PM RESUME.docx
+
+Match Score: 9.09%
+
+Matched Skills:
+aws
+
+Missing Skills:
+deep learning
+docker
+git
+machine learning
+numpy
+pandas
+python
+scikit-learn
+sql
+tensorflow
+
+Recommendations:
+Consider learning pandas
+Consider learning scikit-learn
+Consider learning numpy
+Consider learning docker
+Consider learning tensorflow
+Consider learning git
+Consider learning sql
+Consider learning deep learning
+Consider learning python
+Consider learning machine learning

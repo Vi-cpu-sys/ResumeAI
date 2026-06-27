@@ -1,0 +1,27 @@
+
+Candidate: Saiteja G.docx
+
+Match Score: 45.45%
+
+Matched Skills:
+aws
+docker
+git
+python
+sql
+
+Missing Skills:
+deep learning
+machine learning
+numpy
+pandas
+scikit-learn
+tensorflow
+
+Recommendations:
+Consider learning pandas
+Consider learning scikit-learn
+Consider learning numpy
+Consider learning tensorflow
+Consider learning deep learning
+Consider learning machine learning

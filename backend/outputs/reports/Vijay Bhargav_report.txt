@@ -1,0 +1,27 @@
+
+Candidate: Vijay Bhargav.docx
+
+Match Score: 45.45%
+
+Matched Skills:
+aws
+docker
+machine learning
+python
+sql
+
+Missing Skills:
+deep learning
+git
+numpy
+pandas
+scikit-learn
+tensorflow
+
+Recommendations:
+Consider learning pandas
+Consider learning scikit-learn
+Consider learning numpy
+Consider learning tensorflow
+Consider learning git
+Consider learning deep learning

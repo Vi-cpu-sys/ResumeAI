@@ -1,0 +1,28 @@
+
+Candidate: avinash G.docx
+
+Match Score: 36.36%
+
+Matched Skills:
+aws
+docker
+git
+sql
+
+Missing Skills:
+deep learning
+machine learning
+numpy
+pandas
+python
+scikit-learn
+tensorflow
+
+Recommendations:
+Consider learning pandas
+Consider learning scikit-learn
+Consider learning numpy
+Consider learning tensorflow
+Consider learning deep learning
+Consider learning python
+Consider learning machine learning

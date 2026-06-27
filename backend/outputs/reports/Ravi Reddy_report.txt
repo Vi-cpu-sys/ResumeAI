@@ -1,0 +1,28 @@
+
+Candidate: Ravi Reddy.docx
+
+Match Score: 36.36%
+
+Matched Skills:
+aws
+git
+python
+sql
+
+Missing Skills:
+deep learning
+docker
+machine learning
+numpy
+pandas
+scikit-learn
+tensorflow
+
+Recommendations:
+Consider learning pandas
+Consider learning scikit-learn
+Consider learning numpy
+Consider learning docker
+Consider learning tensorflow
+Consider learning deep learning
+Consider learning machine learning

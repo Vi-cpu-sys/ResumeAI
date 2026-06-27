@@ -1,0 +1,29 @@
+
+Candidate: Pierre John.docx
+
+Match Score: 27.27%
+
+Matched Skills:
+aws
+python
+sql
+
+Missing Skills:
+deep learning
+docker
+git
+machine learning
+numpy
+pandas
+scikit-learn
+tensorflow
+
+Recommendations:
+Consider learning pandas
+Consider learning scikit-learn
+Consider learning numpy
+Consider learning docker
+Consider learning tensorflow
+Consider learning git
+Consider learning deep learning
+Consider learning machine learning

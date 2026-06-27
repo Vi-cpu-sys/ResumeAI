@@ -1,0 +1,30 @@
+
+Candidate: Samir Naik-NJ - Mar 2018-V3.0.docx
+
+Match Score: 18.18%
+
+Matched Skills:
+git
+sql
+
+Missing Skills:
+aws
+deep learning
+docker
+machine learning
+numpy
+pandas
+python
+scikit-learn
+tensorflow
+
+Recommendations:
+Consider learning pandas
+Consider learning scikit-learn
+Consider learning numpy
+Consider learning aws
+Consider learning docker
+Consider learning tensorflow
+Consider learning deep learning
+Consider learning python
+Consider learning machine learning
