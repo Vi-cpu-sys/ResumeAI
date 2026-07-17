@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import toast from "react-hot-toast";
 
 import DropZone from "../components/DropZone";
 import ScoreCard from "../components/ScoreCard";
@@ -15,444 +14,655 @@ import VerdictCard from "../components/VerdictCard";
 import SkillChart from "../components/SkillChart";
 import CandidateInsights from "../components/CandidateInsights";
 import JobFitCard from "../components/JobFitCard";
-import ResumeStatsCard from "../components/ResumeStatsCard";
-import AnalysisHistory from "../components/AnalysisHistory";
-import Footer from "../components/Footer";
-import EmptyState from "../components/EmptyState";
+import JobFitChart from "../components/JobFitChart";
 
 function Dashboard() {
+
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
+
   const [resumeFile, setResumeFile] = useState(null);
+
   const [jdFile, setJdFile] = useState(null);
+
+  const [jdText, setJdText] = useState("");
+
   const [result, setResult] = useState(null);
 
   const handleAnalyze = async () => {
-    if (!resumeFile || !jdFile) {
-      toast.error("Please upload both Resume and Job Description.");
+
+    if (!resumeFile) {
+
+      alert("Please upload your Resume");
+
       return;
+
+    }
+
+    if (!jdFile && jdText.trim() === "") {
+
+      alert("Upload a Job Description OR Paste one.");
+
+      return;
+
     }
 
     try {
+
       setLoading(true);
 
       const formData = new FormData();
+
       formData.append("resume", resumeFile);
-      formData.append("jd", jdFile);
+
+      if (jdFile) {
+
+        formData.append("jd", jdFile);
+
+      }
+
+      if (jdText.trim() !== "") {
+
+        formData.append("jd_text", jdText);
+
+      }
+
+      const API =
+
+        import.meta.env.VITE_API_URL ||
+
+        "http://127.0.0.1:8000";
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/analyze",
+
+        `${API}/analyze`,
+
         formData
+
       );
 
       setResult(response.data);
 
-      toast.success("Resume analyzed successfully!");
-
       localStorage.setItem(
+
         "lastAnalysis",
+
         JSON.stringify(response.data)
+
       );
 
-      setTimeout(() => {
-        window.scrollTo({ top: 900, behavior: "smooth" });
-      }, 500);
-    } catch (error) {
-      console.error(error);
-      toast.error("Unable to connect to backend.");
-    } finally {
-      setLoading(false);
     }
+
+    catch (error) {
+
+      console.error(error);
+
+      alert("Backend connection failed.");
+
+    }
+
+    finally {
+
+      setLoading(false);
+
+    }
+
   };
 
   return (
+
     <div
-      className={
-        "\n" +
-        "min-h-screen\n" +
-        "bg-[#0B1120]\n" +
-        "text-white\n" +
-        "px-8\n" +
-        "py-8\n" +
-        "relative\n" +
-        "overflow-hidden"
-      }
+      className="
+      min-h-screen
+      bg-[#0B1120]
+      text-white
+      px-8
+      py-8
+      relative
+      overflow-hidden"
     >
+
       {/* Background Glow */}
+
       <div
-        className={
-          "\n" +
-          "absolute\n" +
-          "w-[500px]\n" +
-          "h-[500px]\n" +
-          "bg-blue-600\n" +
-          "blur-[220px]\n" +
-          "opacity-20\n" +
-          "top-0\n" +
-          "left-0\n" +
-          "rounded-full"
-        }
+        className="
+        absolute
+        w-[500px]
+        h-[500px]
+        bg-blue-600
+        blur-[220px]
+        opacity-20
+        top-0
+        left-0
+        rounded-full"
       />
+
       <div
-        className={
-          "\n" +
-          "absolute\n" +
-          "w-[500px]\n" +
-          "h-[500px]\n" +
-          "bg-purple-600\n" +
-          "blur-[220px]\n" +
-          "opacity-20\n" +
-          "bottom-0\n" +
-          "right-0\n" +
-          "rounded-full"
-        }
+        className="
+        absolute
+        w-[500px]
+        h-[500px]
+        bg-purple-600
+        blur-[220px]
+        opacity-20
+        bottom-0
+        right-0
+        rounded-full"
       />
 
       {/* Navbar */}
+
       <div
-        className={
-          "\n" +
-          "sticky\n" +
-          "top-4\n" +
-          "z-50\n" +
-          "flex\n" +
-          "justify-between\n" +
-          "items-center\n" +
-          "mb-12\n" +
-          "bg-white/10\n" +
-          "backdrop-blur-xl\n" +
-          "border\n" +
-          "border-white/10\n" +
-          "rounded-2xl\n" +
-          "px-8\n" +
-          "py-4\n" +
-          "shadow-2xl"
-        }
+        className="
+        sticky
+        top-4
+        z-50
+        flex
+        justify-between
+        items-center
+        mb-12
+        bg-white/10
+        backdrop-blur-xl
+        border
+        border-white/10
+        rounded-2xl
+        px-8
+        py-4
+        shadow-2xl"
       >
+
         <h1
-          className={
-            "\n" +
-            "text-3xl\n" +
-            "font-extrabold\n" +
-            "text-blue-400\n" +
-            "drop-shadow-[0_0_20px_rgba(59,130,246,0.8)]"
-          }
+          className="
+          text-3xl
+          font-extrabold
+          text-blue-400
+          drop-shadow-[0_0_20px_rgba(59,130,246,0.8)]"
         >
           ResumeAI
         </h1>
 
         <button
           onClick={() => navigate("/")}
-          className={
-            "\n" +
-            "px-6\n" +
-            "py-2\n" +
-            "rounded-xl\n" +
-            "bg-blue-600/20\n" +
-            "border\n" +
-            "border-blue-500/30\n" +
-            "hover:bg-blue-500\n" +
-            "hover:scale-105\n" +
-            "transition-all\n" +
-            "duration-300"
-          }
+          className="
+          px-6
+          py-2
+          rounded-xl
+          bg-blue-600/20
+          border
+          border-blue-500/30
+          hover:bg-blue-500
+          hover:scale-105
+          transition-all
+          duration-300"
         >
           ← Home
         </button>
+
       </div>
 
       {/* Header */}
+
       <div className="relative z-10">
+
         <h1
-          className={
-            "\n" +
-            "text-5xl\n" +
-            "md:text-6xl\n" +
-            "font-bold\n" +
-            "text-center"
-          }
+          className="
+          text-5xl
+          md:text-6xl
+          font-bold
+          text-center"
         >
           AI Resume Analyzer
         </h1>
+
         <p
-          className={
-            "\n" +
-            "text-center\n" +
-            "text-gray-400\n" +
-            "mt-4\n" +
-            "text-lg"
-          }
+          className="
+          text-center
+          text-gray-400
+          mt-4
+          text-lg"
         >
           Upload Resume and Job Description
           for AI-powered analysis.
         </p>
+
       </div>
 
-      {/* Stats Cards */}
+      {/* Stats */}
+
       <div
-        className={
-          "\n" +
-          "relative\n" +
-          "z-10\n" +
-          "grid\n" +
-          "grid-cols-2\n" +
-          "md:grid-cols-4\n" +
-          "gap-6\n" +
-          "mt-12"
-        }
+        className="
+        relative
+        z-10
+        grid
+        grid-cols-2
+        md:grid-cols-4
+        gap-6
+        mt-12"
       >
-        <FloatingCard value="95%" title="ATS Accuracy" />
-        <FloatingCard value="50K+" title="Resumes Analyzed" />
-        <FloatingCard value="AI" title="Powered Analysis" />
-        <FloatingCard value="24/7" title="Instant Results" />
+
+        <FloatingCard
+          value="95%"
+          title="ATS Accuracy"
+        />
+
+        <FloatingCard
+          value="50K+"
+          title="Resumes Analyzed"
+        />
+
+        <FloatingCard
+          value="AI"
+          title="Powered Analysis"
+        />
+
+        <FloatingCard
+          value="24/7"
+          title="Instant Results"
+        />
+
       </div>
 
-      {/* Upload Section */}
+      {/* Upload */}
+
       <div
-        className={
-          "\n" +
-          "relative\n" +
-          "z-10\n" +
-          "grid\n" +
-          "md:grid-cols-2\n" +
-          "gap-8\n" +
-          "mt-16"
-        }
+        className="
+        relative
+        z-10
+        grid
+        md:grid-cols-2
+        gap-8
+        mt-16"
       >
+
         <DropZone
           title="Upload Resume"
           onFileSelect={setResumeFile}
           file={resumeFile}
         />
+
         <DropZone
           title="Upload Job Description"
           onFileSelect={setJdFile}
           file={jdFile}
         />
+
       </div>
 
-      {/* Upload Status */}
+      {/* Uploaded Files */}
+
       <div
-        className={
-          "\n" +
-          "relative\n" +
-          "z-10\n" +
-          "flex\n" +
-          "justify-center\n" +
-          "gap-8\n" +
-          "mt-8\n" +
-          "flex-wrap"
-        }
+        className="
+        relative
+        z-10
+        flex
+        justify-center
+        gap-8
+        mt-8
+        flex-wrap"
       >
+
         {resumeFile && (
+
           <div
-            className={
-              "\n" +
-              "bg-green-500/20\n" +
-              "border\n" +
-              "border-green-500\n" +
-              "px-6\n" +
-              "py-3\n" +
-              "rounded-xl"
-            }
+            className="
+            bg-green-500/20
+            border
+            border-green-500
+            px-6
+            py-3
+            rounded-xl"
           >
             ✅ {resumeFile.name}
           </div>
+
         )}
 
         {jdFile && (
+
           <div
-            className={
-              "\n" +
-              "bg-green-500/20\n" +
-              "border\n" +
-              "border-green-500\n" +
-              "px-6\n" +
-              "py-3\n" +
-              "rounded-xl"
-            }
+            className="
+            bg-green-500/20
+            border
+            border-green-500
+            px-6
+            py-3
+            rounded-xl"
           >
             ✅ {jdFile.name}
           </div>
+
         )}
+
       </div>
 
-      {/* Analyze Button */}
+      {/* Analyze */}
+
       <div
-        className={
-          "\n" +
-          "relative\n" +
-          "z-10\n" +
-          "text-center\n" +
-          "mt-10"
-        }
+        className="
+        relative
+        z-10
+        text-center
+        mt-10"
       >
+
         <button
           onClick={handleAnalyze}
-          className={
-            "\n" +
-            "px-10\n" +
-            "py-4\n" +
-            "rounded-2xl\n" +
-            "bg-blue-600\n" +
-            "hover:bg-blue-500\n" +
-            "hover:scale-105\n" +
-            "text-xl\n" +
-            "font-semibold\n" +
-            "shadow-xl\n" +
-            "transition-all\n" +
-            "duration-300"
-          }
+          className="
+          px-10
+          py-4
+          rounded-2xl
+          bg-blue-600
+          hover:bg-blue-500
+          hover:scale-105
+          text-xl
+          font-semibold
+          shadow-xl
+          transition-all
+          duration-300"
         >
           Analyze Resume 🚀
         </button>
 
-        <button
-          onClick={() => {
-            setResumeFile(null);
-            setJdFile(null);
-            setResult(null);
-          }}
-          className={
-            "\n" +
-            "ml-4\n" +
-            "px-8\n" +
-            "py-4\n" +
-            "rounded-2xl\n" +
-            "bg-red-600\n" +
-            "hover:bg-red-500\n" +
-            "transition-all"
-          }
-        >
-          Reset
-        </button>
       </div>
 
-      {/* Loading / Results */}
+      {/* Loading */}
+
       {loading ? (
+
         <LoadingAnimation />
-      ) : result ? (
-        <>
-          {/* Row 1 */}
-          <div
-            className={
-              "\n" +
-              "relative\n" +
-              "z-10\n" +
-              "grid\n" +
-              "lg:grid-cols-2\n" +
-              "gap-8\n" +
-              "mt-16"
-            }
-          >
-            <ScoreCard data={result} />
-            <ATSCard data={result} />
-            <div
-              className={
-                "\n" +
-                "relative\n" +
-                "z-10\n" +
-                "mt-8"
-              }
-            >
-              <ResumeStatsCard data={result} />
-            </div>
-          </div>
 
-          {/* Row 2 */}
-          <div
-            className={
-              "\n" +
-              "relative\n" +
-              "z-10\n" +
-              "grid\n" +
-              "lg:grid-cols-2\n" +
-              "gap-8\n" +
-              "mt-8"
-            }
-          >
-            <ResultsCard data={result} />
-            <RecommendationCard data={result} />
-          </div>
-
-          {/* Row 3 */}
-          <div
-            className={
-              "\n" +
-              "relative\n" +
-              "z-10\n" +
-              "grid\n" +
-              "lg:grid-cols-2\n" +
-              "gap-8\n" +
-              "mt-8"
-            }
-          >
-            <VerdictCard data={result} />
-            <DownloadReport data={result} />
-          </div>
-
-          {/* Row 4 */}
-          <div
-            className={
-              "\n" +
-              "relative\n" +
-              "z-10\n" +
-              "grid\n" +
-              "lg:grid-cols-2\n" +
-              "gap-8\n" +
-              "mt-8"
-            }
-          >
-            <SkillChart data={result} />
-            <JobFitCard
-              data={{
-                ...result,
-                score: result.score,
-                job_fit: result.job_fit,
-              }}
-            />
-          </div>
-
-          {/* Row 5 */}
-          <div
-            className={
-              "\n" +
-              "relative\n" +
-              "z-10\n" +
-              "mt-8\n" +
-              "mb-20"
-            }
-          >
-            <CandidateInsights
-              data={{
-                ...result,
-                strengths: result.strengths,
-                weaknesses: result.weaknesses,
-                interview_probability: result.interview_probability,
-              }}
-            />
-
-            <div
-              className={
-                "\n" +
-                "relative\n" +
-                "z-10\n" +
-                "mt-8\n" +
-                "mb-20"
-              }
-            >
-              <AnalysisHistory />
-            </div>
-          </div>
-        </>
       ) : (
-        <EmptyState />
+
+        result && (
+
+          <>
+
+            {/* Row 1 */}
+
+            <div
+              className="
+              relative
+              z-10
+              grid
+              lg:grid-cols-2
+              gap-8
+              mt-16"
+            >
+
+              <ScoreCard data={result} />
+
+              <ATSCard data={result} />
+
+            </div>
+
+            {/* Row 2 */}
+
+            <div
+              className="
+              relative
+              z-10
+              grid
+              lg:grid-cols-2
+              gap-8
+              mt-8"
+            >
+
+              <ResultsCard data={result} />
+
+              <RecommendationCard data={result} />
+
+            </div>
+
+            {/* Row 3 */}
+
+            <div
+              className="
+              relative
+              z-10
+              grid
+              lg:grid-cols-2
+              gap-8
+              mt-8"
+            >
+
+              <VerdictCard data={result} />
+
+              <DownloadReport data={result} />
+
+            </div>
+
+            {/* Row 4 */}
+
+            <div
+              className="
+              relative
+              z-10
+              grid
+              lg:grid-cols-2
+              gap-8
+              mt-8"
+            >
+
+              <SkillChart data={result} />
+
+              <JobFitCard data={result} />
+
+            </div>
+
+            {/* Row 5 */}
+
+            <div
+              className="
+              relative
+              z-10
+              mt-8"
+            >
+
+              <JobFitChart
+                data={result}
+              />
+
+            </div>
+
+            {/* Row 6 */}
+
+            <div
+              className="
+              relative
+              z-10
+              mt-8"
+            >
+
+              <CandidateInsights
+                data={result}
+              />
+
+            </div>
+
+          </>
+
+        )
+
       )}
 
-      <Footer />
+      {/* Recent Analysis */}
+
+      {
+
+        !loading &&
+
+        localStorage.getItem("lastAnalysis") && (
+
+          <div
+            className="
+            relative
+            z-10
+            mt-16
+            mb-20
+            bg-white/5
+            backdrop-blur-xl
+            border
+            border-white/10
+            rounded-3xl
+            p-8"
+          >
+
+            <div
+              className="
+              flex
+              justify-between
+              items-center
+              mb-6"
+            >
+
+              <h2
+                className="
+                text-3xl
+                font-bold"
+              >
+                Previous Analysis
+              </h2>
+
+              <button
+
+                onClick={() => {
+
+                  localStorage.removeItem(
+                    "lastAnalysis"
+                  );
+
+                  window.location.reload();
+
+                }}
+
+                className="
+                px-5
+                py-2
+                rounded-xl
+                bg-red-500/20
+                border
+                border-red-500/30
+                hover:bg-red-500
+                transition-all"
+
+              >
+
+                Clear History
+
+              </button>
+
+            </div>
+
+            {
+
+              (() => {
+
+                const previous =
+                  JSON.parse(
+                    localStorage.getItem(
+                      "lastAnalysis"
+                    )
+                  );
+
+                return (
+
+                  <div
+                    className="
+                    bg-blue-500/10
+                    border
+                    border-blue-500/20
+                    rounded-2xl
+                    p-6"
+                  >
+
+                    <div
+                      className="
+                      flex
+                      justify-between
+                      flex-wrap
+                      gap-4"
+                    >
+
+                      <div>
+
+                        <p
+                          className="
+                          text-gray-400"
+                        >
+                          Previous ATS Score
+                        </p>
+
+                        <h3
+                          className="
+                          text-5xl
+                          font-bold
+                          text-blue-400"
+                        >
+                          {previous.score}%
+                        </h3>
+
+                      </div>
+
+                      <div>
+
+                        <p
+                          className="
+                          text-gray-400"
+                        >
+                          Status
+                        </p>
+
+                        <h3
+                          className="
+                          text-2xl
+                          font-semibold"
+                        >
+                          {previous.status}
+                        </h3>
+
+                      </div>
+
+                      <div>
+
+                        <p
+                          className="
+                          text-gray-400"
+                        >
+                          Recruiter Verdict
+                        </p>
+
+                        <h3
+                          className="
+                          text-2xl
+                          font-semibold
+                          text-green-400"
+                        >
+                          {previous.verdict}
+                        </h3>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                );
+
+              })()
+
+            }
+
+          </div>
+
+        )
+
+      }
+
     </div>
+
   );
+
 }
 
 export default Dashboard;
